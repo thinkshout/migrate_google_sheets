@@ -1,0 +1,14 @@
+{
+  "name": "drupal/migrate_google_sheets",
+  "type": "drupal-module",
+  "description": "Source plugin to use Google Sheets JSON feed as the source for a migration",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/migrate_google_sheets",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/migrate_google_sheets",
+    "source": "http://cgit.drupalcode.org/migrate_google_sheets"
+  },
+  "require": { }
+}
