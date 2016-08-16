@@ -10,7 +10,7 @@ source:
   # view” in order for the feed to work. Note that the <SHEET> param is the order of the tabs and WILL change if the
   # tabs are re-ordered.
   # Template: 'https://spreadsheets.google.com/feeds/list/<KEY>/<SHEET>/public/values?alt=json'
-  urls: 'https://spreadsheets.google.com/feeds/list/1t7XfO-iNmghp-Eo7xMZPXLxcJ-qdvphQH7taLu-TSDQ/5/public/values?alt=json'
+  urls: 'https://spreadsheets.google.com/feeds/list/1TRo4oaQ-Iot2N7gUuLFwC1a3jLl_miZ88p8ZMJCeCs8/2/public/values?alt=json'
   # Under 'fields', we list the data items to be imported. The first level keys
   # are the source field names we want to populate (the names to be used as
   # sources in the process configuration below). For each field we're importing,
@@ -26,7 +26,7 @@ source:
       selector: 'id'
     -
       name: title
-      label: 'Title2'
+      label: 'Title'
       selector: 'title'
   # Under 'ids', we identify source fields populated above which will uniquely
   # identify each imported item. The 'type' makes sure the migration map table
