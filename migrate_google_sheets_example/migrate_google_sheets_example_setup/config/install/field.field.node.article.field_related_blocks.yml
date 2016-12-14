@@ -1,0 +1,28 @@
+uuid: 55a4a414-6f5e-4234-a927-cdf907366735
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.basic
+    - field.storage.node.field_related_blocks
+    - node.type.article
+id: node.article.field_related_blocks
+field_name: field_related_blocks
+entity_type: node
+bundle: article
+label: 'Related blocks'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:block_content'
+  handler_settings:
+    target_bundles:
+      basic: basic
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
