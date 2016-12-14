@@ -5,10 +5,10 @@
 
 # The machine name of the group, by which it is referenced in individual
 # migrations.
-id: test
+id: games_example
 
 # A human-friendly label for the group.
-label: Test Imports
+label: Games imports example
 
 # More information about the group.
 description: Simple test of migrating from google sheets.

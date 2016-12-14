@@ -6,4 +6,5 @@ package: Migrate
 dependencies:
   - migrate_plus
   - migrate_google_sheets
-  - migrate_google_sheets:migrate_google_sheets_example
+  - migrate_google_sheets:migrate_google_sheets_example_setup
+  - redirect

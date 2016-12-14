@@ -65,8 +65,9 @@ process:
   description: title
   menu_name: menu_name
   link/uri:
-    plugin: link_url_import
-    source: path
+    plugin: link_uri
+    source:
+      - path
   link/options:
     plugin: default_value
     default_value: {  }
