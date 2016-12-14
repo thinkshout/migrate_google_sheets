@@ -1,0 +1,81 @@
+# This migration demonstrates importing from a Google Spreadsheet XML feed.
+id: blocks
+label: Example block migration with Google Spreadsheet
+migration_group: games_example
+source:
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: google_sheets
+  # The feed file for the spreadsheet. The Google Spreadsheet should be either “Public” or set to “Anyone with link can
+  # view” in order for the feed to work. Note that the <SHEET> param is the order of the tabs and WILL change if the
+  # tabs are re-ordered.
+  # Template: 'https://spreadsheets.google.com/feeds/list/<KEY>/<SHEET>/public/values?alt=json'
+  urls: 'http://spreadsheets.google.com/feeds/list/1spS1BeUIzxR1KrGK2kKzAoiFZii6vBHyLx_SA0Sb89M/4/public/values?alt=json'
+  # Under 'fields', we list the data items to be imported. The first level keys
+  # are the source field names we want to populate (the names to be used as
+  # sources in the process configuration below). For each field we're importing,
+  # we provide a label (optional - this is for display in migration tools) and
+  # an selector (xpath) for retrieving that value. It's important to note that this xpath
+  # is relative to the elements retrieved by item_selector.
+  # For Google Spreadsheet XML feeds the actual columns are named with gsx: followed by the cleaned column name (lower,
+  # limited punctuation, etc).
+  fields:
+    -
+      name: id
+      label: 'Unique identifier'
+      selector: 'id'
+    -
+      name: blocktype
+      label: "Block type"
+      selector: 'blocktype'
+    -
+      name: blockdescription
+      label: "Block description"
+      selector: 'blockdescription'
+    -
+      name: blocktext
+      label: "Block text"
+      selector: blocktext
+    -
+      name: visibleblocktitle
+      label: "Visible Block Title"
+      selector: 'visibleblocktitle'
+    -
+      name: universalidentifier
+      label: 'Universal identifier'
+      selector: 'universalidentifier'
+  # Under 'ids', we identify source fields populated above which will uniquely
+  # identify each imported item. The 'type' makes sure the migration map table
+  # uses the proper schema type for stored the IDs.
+  ids:
+    id:
+      type: integer
+# This is the mapping of the source values to the destination.
+process:
+  type: blocktype
+  #
+  # The block title
+  #
+  info: blockdescription
+  #
+  # The main title presented to the user
+  #
+  field_visible_block_title: visibleblocktitle
+  #
+  # The body field (additional text, smaller print)
+  #
+  body/value: blocktext
+  body/format:
+    plugin: default_value
+    default_value: full_html
+  #
+  # The UUID of the block. Used to show the correct block on the block layout page.
+  uuid:
+    plugin: skip_on_empty
+    method: process
+    source: universalidentifier
+destination:
+  plugin: entity:block_content
+migration_dependencies:
+  required: {  }
+  optional: {  }

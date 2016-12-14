@@ -6,3 +6,4 @@ package: Migrate
 dependencies:
   - migrate_plus
   - migrate_google_sheets
+  - migrate_google_sheets:migrate_google_sheets_example
