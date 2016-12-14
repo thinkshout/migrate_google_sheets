@@ -1,0 +1,19 @@
+uuid: 2d0e9997-43d5-47cf-83d2-1565261dedcf
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.basic
+    - field.storage.block_content.field_visible_block_title
+id: block_content.basic.field_visible_block_title
+field_name: field_visible_block_title
+entity_type: block_content
+bundle: basic
+label: 'Visible Block Title'
+description: 'This text will show to the end user'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

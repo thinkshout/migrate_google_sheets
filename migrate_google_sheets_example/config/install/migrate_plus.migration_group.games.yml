@@ -5,13 +5,13 @@
 
 # The machine name of the group, by which it is referenced in individual
 # migrations.
-id: test
+id: games
 
 # A human-friendly label for the group.
-label: Test Imports
+label: Game Imports
 
 # More information about the group.
-description: Simple test of migrating from google sheets.
+description: Example of migrating game information from google sheets.
 
 # Short description of the type of source, e.g. "Drupal 6" or "WordPress".
 source_type: Google Spreadsheet
