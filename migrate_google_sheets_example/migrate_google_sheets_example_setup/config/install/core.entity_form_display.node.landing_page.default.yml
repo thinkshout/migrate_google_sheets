@@ -1,55 +1,35 @@
-uuid: 00227e47-4b53-473f-81cc-c54c4c1f2b85
+uuid: 20350822-ac4e-48f2-99a1-c0204fc4d134
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.article.body
-    - field.field.node.article.comment
-    - field.field.node.article.field_image
-    - field.field.node.article.field_related_blocks
-    - field.field.node.article.field_subhead
-    - field.field.node.article.field_tags
-    - image.style.thumbnail
-    - node.type.article
+    - field.field.node.landing_page.body
+    - field.field.node.landing_page.field_related_articles
+    - field.field.node.landing_page.field_subhead
+    - node.type.landing_page
   module:
-    - comment
-    - image
     - path
     - text
-_core:
-  default_config_hash: 7CvVDwPYotAZFBa36mcpMKZOfVRRp_iGuPHpHaavI6E
-id: node.article.default
+id: node.landing_page.default
 targetEntityType: node
-bundle: article
+bundle: landing_page
 mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 2
+    weight: 31
     settings:
       rows: 9
       summary_rows: 3
       placeholder: ''
     third_party_settings: {  }
-  comment:
-    type: comment_default
-    weight: 9
-    settings: {  }
-    third_party_settings: {  }
   created:
     type: datetime_timestamp
-    weight: 6
+    weight: 10
     settings: {  }
     third_party_settings: {  }
-  field_image:
-    type: image_image
-    weight: 4
-    settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
-    third_party_settings: {  }
-  field_related_blocks:
-    weight: 11
+  field_related_articles:
+    weight: 32
     settings:
       match_operator: CONTAINS
       size: 60
@@ -57,40 +37,32 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
   field_subhead:
-    weight: 1
+    weight: 33
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-  field_tags:
-    type: entity_reference_autocomplete_tags
-    weight: 3
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   path:
     type: path
-    weight: 10
+    weight: 30
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 7
+    weight: 15
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 8
+    weight: 16
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: 0
+    weight: -5
     settings:
       size: 60
       placeholder: ''

@@ -1,18 +1,18 @@
-uuid: 63a17264-5c09-4a07-979d-069c672fbd76
+uuid: dfdaa022-eab5-4d71-a817-dc98ea073ada
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_subhead
-    - node.type.article
-id: node.article.field_subhead
+    - node.type.game
+id: node.game.field_subhead
 field_name: field_subhead
 entity_type: node
-bundle: article
+bundle: game
 label: Subhead
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings: {  }

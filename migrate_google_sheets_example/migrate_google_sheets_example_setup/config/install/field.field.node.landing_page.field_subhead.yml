@@ -1,14 +1,14 @@
-uuid: 140520e7-4084-4ccb-9b78-db4557ee8757
+uuid: c126114d-db15-4ab8-899a-1c231cb3e5e3
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_subhead
-    - node.type.page
-id: node.page.field_subhead
+    - node.type.landing_page
+id: node.landing_page.field_subhead
 field_name: field_subhead
 entity_type: node
-bundle: page
+bundle: landing_page
 label: Subhead
 description: ''
 required: false

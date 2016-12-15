@@ -1,0 +1,18 @@
+uuid: f0a708de-65ba-46f5-b3d8-a7286b9e355f
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'Landing Page'
+type: landing_page
+description: 'Organize your site based on Landing Pages'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: false
