@@ -1,4 +1,4 @@
-id: node_page_redirect
+id: node_landing_page_redirect
 label: Games Site node pages with Google Spreadsheet
 migration_group: games_example
 source:

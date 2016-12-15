@@ -1,5 +1,5 @@
-id: node_article_redirect
-label: Games Site node articles with Google Spreadsheet
+id: node_game_redirect
+label: Games Site node games with Google Spreadsheet
 migration_group: games_example
 source:
   plugin: url
