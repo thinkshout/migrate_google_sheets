@@ -1,0 +1,18 @@
+uuid: 7737f8d6-4c81-4cc9-b4a3-12d9ae9aeafe
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: Game
+type: game
+description: 'Games Example content type'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true

@@ -1,0 +1,6 @@
+type: module
+name: Migrate Google Sheets Example Setup
+description: 'Separate site configuration for the example from the actual migration.'
+package: Migration
+core: 8.x
+hidden: 1

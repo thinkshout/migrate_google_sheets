@@ -1,0 +1,28 @@
+uuid: c5a4e706-d8a2-47e4-9efc-8bfa539feee5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_articles
+    - node.type.game
+    - node.type.landing_page
+id: node.landing_page.field_related_articles
+field_name: field_related_articles
+entity_type: node
+bundle: landing_page
+label: 'Related games'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      game: game
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

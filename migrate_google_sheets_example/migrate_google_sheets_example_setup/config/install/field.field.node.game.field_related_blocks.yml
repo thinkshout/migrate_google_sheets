@@ -1,0 +1,28 @@
+uuid: af4d4172-a33a-4ccc-aa16-163abe5f3f1e
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.cta_block
+    - field.storage.node.field_related_blocks
+    - node.type.game
+id: node.game.field_related_blocks
+field_name: field_related_blocks
+entity_type: node
+bundle: game
+label: 'Related blocks'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:block_content'
+  handler_settings:
+    target_bundles:
+      cta_block: cta_block
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: basic
+field_type: entity_reference

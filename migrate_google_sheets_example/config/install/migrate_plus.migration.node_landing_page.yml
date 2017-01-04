@@ -1,7 +1,7 @@
 # This migration demonstrates importing from a Google Spreadsheet XML feed.
-id: test
-label: Test with Google Spreadsheet
-migration_group: test
+id: node_landing_page
+label: Games Site node pages with Google Spreadsheet
+migration_group: games_example
 source:
   plugin: url
   data_fetcher_plugin: http
@@ -10,7 +10,7 @@ source:
   # view” in order for the feed to work. Note that the <SHEET> param is the order of the tabs and WILL change if the
   # tabs are re-ordered.
   # Template: 'https://spreadsheets.google.com/feeds/list/<KEY>/<SHEET>/public/values?alt=json'
-  urls: 'https://spreadsheets.google.com/feeds/list/1TRo4oaQ-Iot2N7gUuLFwC1a3jLl_miZ88p8ZMJCeCs8/2/public/values?alt=json'
+  urls: 'http://spreadsheets.google.com/feeds/list/1spS1BeUIzxR1KrGK2kKzAoiFZii6vBHyLx_SA0Sb89M/2/public/values?alt=json'
   # Under 'fields', we list the data items to be imported. The first level keys
   # are the source field names we want to populate (the names to be used as
   # sources in the process configuration below). For each field we're importing,
@@ -28,6 +28,34 @@ source:
       name: title
       label: 'Title'
       selector: 'title'
+    -
+      name: status
+      label: 'Status'
+      selector: 'status'
+    -
+      name: path
+      label: 'Path'
+      selector: 'path'
+    -
+      name: redirect
+      label: 'Redirect'
+      selector: 'redirect'
+    -
+      name: subhead
+      label: 'Subhead'
+      selector: 'subhead'
+    -
+      name: summary
+      label: 'Summary'
+      selector: 'summary'
+    -
+      name: body
+      label: 'Body'
+      selector: 'body'
+    -
+      name: relatedgames
+      label: 'Related Games'
+      selector: 'relatedgames'
   # Under 'ids', we identify source fields populated above which will uniquely
   # identify each imported item. The 'type' makes sure the migration map table
   # uses the proper schema type for stored the IDs.
@@ -38,10 +66,30 @@ source:
 process:
   type:
     plugin: default_value
-    default_value: page
+    default_value: landing_page
   # Note that the source field names here (id and title) were
   # defined by the 'fields' configuration for the source plugin above.
   title: title
+  status: status
+  path/pathauto:
+    plugin: default_value
+    default_value: 0 # Disable pathauto.
+  path/alias: path
+  field_subhead: subhead
+  body/value: body
+  body/summary: summary
+  body/format:
+    plugin: default_value
+    default_value: full_html
+  field_related_articles:
+    -
+      plugin: explode
+      source: relatedgames
+      delimiter: ;
+    -
+      plugin: entity_lookup
 destination:
   plugin: entity:node
-migration_dependencies: {}
+migration_dependencies:
+  required:
+    - node_game

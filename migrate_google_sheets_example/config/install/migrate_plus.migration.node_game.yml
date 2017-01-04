@@ -1,0 +1,138 @@
+# This migration demonstrates importing from a Google Spreadsheet XML feed.
+id: node_game
+label: Games Site node "games" with Google Spreadsheet
+migration_group: games_example
+source:
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: google_sheets
+  # The feed file for the spreadsheet. The Google Spreadsheet should be either “Public” or set to “Anyone with link can
+  # view” in order for the feed to work. Note that the <SHEET> param is the order of the tabs and WILL change if the
+  # tabs are re-ordered.
+  # Template: 'https://spreadsheets.google.com/feeds/list/<KEY>/<SHEET>/public/values?alt=json'
+  urls: 'http://spreadsheets.google.com/feeds/list/1spS1BeUIzxR1KrGK2kKzAoiFZii6vBHyLx_SA0Sb89M/3/public/values?alt=json'
+  # Under 'fields', we list the data items to be imported. The first level keys
+  # are the source field names we want to populate (the names to be used as
+  # sources in the process configuration below). For each field we're importing,
+  # we provide a label (optional - this is for display in migration tools) and
+  # an selector (xpath) for retrieving that value. It's important to note that this xpath
+  # is relative to the elements retrieved by item_selector.
+  # For Google Spreadsheet XML feeds the actual columns are named with gsx: followed by the cleaned column name (lower,
+  # limited punctuation, etc).
+  fields:
+    -
+      name: id
+      label: 'Unique identifier'
+      selector: 'id'
+    -
+      name: title
+      label: 'Title'
+      selector: 'title'
+    -
+      name: status
+      label: 'Status'
+      selector: 'status'
+    -
+      name: path
+      label: 'Path'
+      selector: 'path'
+    -
+      name: redirect
+      label: 'Redirect'
+      selector: 'redirect'
+    -
+      name: image
+      label: 'Image'
+      selector: 'image'
+    -
+      name: imagefilename
+      label: 'Image Filename'
+      selector: 'imagefilename'
+    -
+      name: imagealt
+      label: 'Image Alt'
+      selector: 'imagealt'
+    -
+      name: imagetitle
+      label: 'Image Title'
+      selector: 'imagetitle'
+    -
+      name: subhead
+      label: 'Subhead'
+      selector: 'subhead'
+    -
+      name: summary
+      label: 'Summary'
+      selector: 'summary'
+    -
+      name: body
+      label: 'Body'
+      selector: 'body'
+    -
+      name: topic
+      label: 'Topic'
+      selector: 'topic'
+    -
+      name: relatedblocks
+      label: 'Related Blocks'
+      selector: 'relatedblocks'
+  # Under 'ids', we identify source fields populated above which will uniquely
+  # identify each imported item. The 'type' makes sure the migration map table
+  # uses the proper schema type for stored the IDs.
+  ids:
+    id:
+      type: integer
+# This is the mapping of the source values to the destination.
+process:
+  type:
+    plugin: default_value
+    default_value: game
+  # Note that the source field names here (id and title) were
+  # defined by the 'fields' configuration for the source plugin above.
+  title: title
+  status: status
+  path/pathauto:
+    plugin: default_value
+    default_value: 0 # Disable pathauto.
+  path/alias: path
+  field_subhead: subhead
+  body/value: body
+  body/summary: summary
+  body/format:
+    plugin: default_value
+    default_value: full_html
+  public_file_directory:
+    plugin: default_value
+    default_value: 'public://'
+  public_file_uri:
+    plugin: concat
+    delimiter: ''
+    source:
+      - @public_file_directory
+      - imagefilename
+  field_image/target_id:
+    -
+      plugin: file_copy
+      source:
+        - image
+        - @public_file_uri
+    -
+      plugin: entity_generate
+  field_image/alt: imagealt
+  field_image/title: imagetitle
+  field_related_blocks:
+    -
+      plugin: explode
+      source: relatedblocks
+      delimiter: ;
+    -
+      plugin: callback
+      callable: trim
+    -
+      plugin: migration
+      migration: blocks
+destination:
+  plugin: entity:node
+migration_dependencies:
+  required:
+    - blocks

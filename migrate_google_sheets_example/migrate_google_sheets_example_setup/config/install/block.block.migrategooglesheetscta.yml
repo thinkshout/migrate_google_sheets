@@ -1,0 +1,25 @@
+uuid: a6f43b32-e550-4d4f-84c3-3e3adbd637f5
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:6005318a-aa50-4fdd-aeae-4b08a6193029'
+  module:
+    - block_content
+  theme:
+    - bartik
+id: migrategooglesheetscta
+theme: bartik
+region: featured_top
+weight: 0
+provider: null
+plugin: 'block_content:6005318a-aa50-4fdd-aeae-4b08a6193029'
+settings:
+  id: 'block_content:6005318a-aa50-4fdd-aeae-4b08a6193029'
+  label: 'Migrate Google Sheets CTA'
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

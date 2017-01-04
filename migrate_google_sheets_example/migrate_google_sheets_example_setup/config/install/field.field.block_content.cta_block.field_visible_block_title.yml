@@ -1,0 +1,19 @@
+uuid: ce71cbc3-a661-4371-97e1-b93e0817d3e4
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.cta_block
+    - field.storage.block_content.field_visible_block_title
+id: block_content.cta_block.field_visible_block_title
+field_name: field_visible_block_title
+entity_type: block_content
+bundle: cta_block
+label: 'Visible Block Title'
+description: 'This text will show to the end user'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

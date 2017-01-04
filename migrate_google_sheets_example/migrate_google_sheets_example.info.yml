@@ -5,4 +5,7 @@ core: 8.x
 package: Migrate
 dependencies:
   - migrate_plus
+  - migrate_tools
   - migrate_google_sheets
+  - migrate_google_sheets:migrate_google_sheets_example_setup
+  - redirect
