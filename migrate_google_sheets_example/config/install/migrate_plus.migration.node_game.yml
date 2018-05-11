@@ -108,14 +108,14 @@ process:
     plugin: concat
     delimiter: ''
     source:
-      - @public_file_directory
+      - '@public_file_directory'
       - imagefilename
   field_image/target_id:
     -
       plugin: file_copy
       source:
         - image
-        - @public_file_uri
+        - '@public_file_uri'
     -
       plugin: entity_generate
   field_image/alt: imagealt
