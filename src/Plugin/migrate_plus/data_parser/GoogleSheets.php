@@ -18,6 +18,11 @@ use GuzzleHttp\Exception\RequestException;
 class GoogleSheets extends Json implements ContainerFactoryPluginInterface {
 
   /**
+   * @var array
+   */
+  protected $headers = [];
+
+  /**
    * {@inheritdoc}
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition) {
@@ -33,14 +38,27 @@ class GoogleSheets extends Json implements ContainerFactoryPluginInterface {
     // correct values.
     try {
       $response = $this->getDataFetcherPlugin()->getResponseContent($url);
+      // Response returns json wrapped in a function call, first 47 and last 2 chars.
+      $response = substr($response, 47, (strlen($response) - 47 - 2));
       // The TRUE setting means decode the response into an associative array.
       $array = json_decode($response, TRUE);
 
-      // For Google Sheets, the actual row data lives under feed->entry.
-      if (isset($array['feed']) && isset($array['feed']['entry'])) {
-        $array = $array['feed']['entry'];
-      }
-      else {
+      // For Google Sheets, the actual row data lives under table->rows.
+      if (isset($array['table']) && isset($array['table']['rows'])) {
+        if (isset($array['table']['cols']) && $array['table']['parsedNumHeaders'] > 0) {
+          // Set headers based on column labels.
+          $columns = array_column($array['table']['cols'], 'label');
+        } else {
+          // Set headers from first row.
+          $first_row = array_shift($array['table']['rows']);
+          $columns = array_column($first_row['c'], 'v');
+        }
+        $this->headers = array_map(function($col) {
+          return strtolower($col);
+        }, $columns);
+
+        $array = $array['table']['rows'];
+      } else {
         $array = [];
       }
 
@@ -58,8 +76,13 @@ class GoogleSheets extends Json implements ContainerFactoryPluginInterface {
     $current = $this->iterator->current();
     if ($current) {
       foreach ($this->fieldSelectors() as $field_name => $selector) {
-        // Actual values are stored in gsx$<field>['$t'].
-        $this->currentItem[$field_name] = $current['gsx$' . $selector]['$t'];
+        // Actual values are stored in c[<column index>]['v'].
+        $column_index = array_search(strtolower($selector), $this->headers);
+        if ($column_index >= 0) {
+          $this->currentItem[$field_name] = $current['c'][$column_index]['v'];
+        } else {
+          $this->currentItem[$field_name] = NULL;
+        }
       }
       $this->iterator->next();
     }
