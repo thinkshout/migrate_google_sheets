@@ -1,7 +1,7 @@
 name: Migrate Google Sheets Example
 type: module
 description: Migrate Google Sheets Example
-core: 8.x
+core_version_requirement: ^8 || ^9
 package: Migrate
 dependencies:
   - migrate_plus:migrate_plus
