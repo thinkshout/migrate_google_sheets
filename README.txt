@@ -4,7 +4,8 @@ Google Sheets.
 Requirements
 =======
 
-The source Google Sheet will need to be published and viewable without authentication.
+The source Google Sheet will need to be published and viewable without authentication. (File > Publish to the web)
+
 
 Examples
 ========
