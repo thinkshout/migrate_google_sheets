@@ -1,7 +1,6 @@
 name: Migrate Google Sheets
 type: module
 description: Source plugin to use Google Sheets JSON feed as the source for a migration
-core: 8.x
 core_version_requirement: ^8 || ^9
 package: Migrate
 dependencies:
