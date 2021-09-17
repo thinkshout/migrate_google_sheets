@@ -4,4 +4,4 @@ description: Source plugin to use Google Sheets JSON feed as the source for a mi
 core: 8.x
 package: Migrate
 dependencies:
-  - migrate_plus
+  - migrate_plus:migrate_plus

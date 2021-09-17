@@ -1,11 +1,11 @@
-name: migrate_google_sheets_example
+name: Migrate Google Sheets Example
 type: module
 description: Migrate Google Sheets Example
 core: 8.x
 package: Migrate
 dependencies:
-  - migrate_plus
-  - migrate_tools
-  - migrate_google_sheets
+  - migrate_plus:migrate_plus
+  - migrate_tools:migrate_tools
+  - migrate_google_sheets:migrate_google_sheets
   - migrate_google_sheets:migrate_google_sheets_example_setup
-  - redirect
+  - redirect:redirect
